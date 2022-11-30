@@ -1,5 +1,6 @@
 package com.warchief.bullseye
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
@@ -38,6 +39,10 @@ class MainActivity : AppCompatActivity() {
             startNewGame()
         }
 
+        binding.infoButton?.setOnClickListener {
+            navigateToAboutPage()
+        }
+
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 sliderValue = progress
@@ -48,6 +53,11 @@ class MainActivity : AppCompatActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
 
         })
+    }
+
+    private fun navigateToAboutPage() {
+        val intent = Intent(this, AboutActivity::class.java)
+        startActivity(intent)
     }
 
     private fun differenceAmount() = abs(targetValue - sliderValue)
